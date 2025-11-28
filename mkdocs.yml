@@ -1,1 +1,44 @@
-site_name: My Docs
+site_name: CityBEM V2 Documentation
+
+theme:
+  name: material
+  features:
+    - content.code.annotate
+    - content.tabs
+    - content.cards
+    - content.grid
+    - navigation.instant
+  hide:
+    - header
+    - footer
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Input Data: data_inputs.md
+  - City Solar Radiation Modeling: solar_radiation.md
+  - Rooftop PV Model: pv_model.md
+  - Microclimate Co-Simulation: microclimate.md
+  - Outputs: outputs.md
+  - Run CityBEM: run_citybem.md
+  - Test Cases:
+      - Rooftop PV Montreal Case: examples/rooftoppv_montreal.md
+  - Publications: publications.md
+  - About Us: about.md
+  - Contact: contact.md
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - admonition
+  
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_javascript:
+  - javascripts/mathjax.js
