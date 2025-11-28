@@ -1,11 +1,13 @@
 # 👥 About Us
----
+
 <div align="center">
   <img src="assets/about_us.png" alt="About Us" width="25%">
 </div>
+
 ---
+
 ### CityBEM V2 Team
----
+
 
 ## 👨‍💻 Lead Developer
 
