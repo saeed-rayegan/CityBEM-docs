@@ -2,7 +2,7 @@
 For collaborations, inquiries, or technical questions:
 
 - 👤 Saeed Rayegan: [saeed.rayegan@gmail.com](mailto:saeed.rayegan@gmail.com)
-- 👤 Dr. Liangzhu (Leon) Wang: [liangzhu.wang@concordia.ca](mailto:liangzhu.wang@concordia.ca)
+- 👤 Dr. Liangzhu Leon Wang: [liangzhu.wang@concordia.ca](mailto:liangzhu.wang@concordia.ca)
 - 👤 Dr. Radu Grigore Zmeureanu: [radu.zmeureanu@concordia.ca](mailto:radu.zmeureanu@concordia.ca)
 
 ---

@@ -1,16 +1,25 @@
-site_name: CityBEM V2 Documentation
+site_name: City Building Energy Model (CityBEM) V2
 
 theme:
   name: material
+  title: CityBEM
+  logo: /assets/citybem_logo.png
   features:
     - content.code.annotate
     - content.tabs
     - content.cards
     - content.grid
     - navigation.instant
+    - navigation.title
   hide:
     - header
     - footer
+
+extra:
+  alternate_site_name: CityBEM
+
+extra_css:
+  - stylesheets/extra.css
 
 nav:
   - Home: index.md

@@ -1,6 +1,6 @@
 # City Solar Radiation Modeling
 
-CityBEM V.2 incorporates a highly efficient **3D ray-tracing solar radiation model** to compute direct beam shading in dense urban environments.
+CityBEM V2 incorporates a highly efficient **3D ray-tracing solar radiation model** to compute direct beam shading in dense urban environments.
 
 ## 1. Overview
 The model:

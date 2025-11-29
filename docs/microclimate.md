@@ -1,6 +1,6 @@
 # Microclimate Co-Simulation
 
-CityBEM V.2 can be coupled with microclimate, detailed CFD or surrogate, solvers to improve prediction of wind-dependent and temperature-dependent heat transfer.
+CityBEM V2 can be coupled with microclimate, detailed CFD or surrogate, solvers to improve prediction of wind-dependent and temperature-dependent heat transfer.
 
 ## 1. Why Microclimate?
 Urban conditions differ significantly from airport weather stations.  

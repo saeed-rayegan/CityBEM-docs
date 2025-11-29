@@ -5,13 +5,13 @@ Welcome to the official documentation of CityBEM V2 — an advanced, lightweight
 ### CityBEM Overview
 
 <div align="center">
-  <img src="assets/citybem_overview.png" alt="City-scale simulation example" width="90%">
+  <img src="/assets/citybem_overview.png" alt="City-scale simulation example" width="90%">
 </div>
 
 ---
 
 <div align="center">
-  <img src="assets/citybem_overview2.png" alt="City-scale simulation example" width="90%">
+  <img src="/assets/citybem_overview2.png" alt="City-scale simulation example" width="90%">
 </div>
 
 ---
@@ -75,14 +75,14 @@ Welcome to the official documentation of CityBEM V2 — an advanced, lightweight
 - :material-solar-power: **Rooftop PV Simulation**  
   Design scalable PV networks, compute shading-aware power outputs.
 
-- :material-cloud-sync: **Microclimate Co-Simulation**  
+- :material-office-building-outline: :material-weather-windy: **Microclimate Co-Simulation**  
   Integrate CityFFD microclimate fields directly into the energy model.
 
 - :material-file-chart: **Outputs**  
   Explore how to interpret simulation results and export workflows.
 
 - :material-flask: **Test Cases**  
-  Run example cases, including the **Montreal Rooftop PV Case**.
+  Example cases results.
 
 - :material-book-open-page-variant: **Publications**  
   Cite CityBEM V2 in your research and explore related studies.
