@@ -3,7 +3,8 @@ site_url: https://saeed-rayegan.github.io/CityBEM-Docs/ # Added site URL for Git
 theme:
   name: material
   title: CityBEM
-  logo: /assets/citybem_logo.png
+  logo: assets/citybem_logo.png
+  favicon: assets/citybem_logo.png
   features:
     - content.code.annotate
     - content.tabs

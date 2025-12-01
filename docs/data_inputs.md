@@ -730,7 +730,7 @@ Wind data supports:
 ### **`Input_cosine_zenith.txt`**
 
 <div align="center">
-  <img src="assets/Input_cosine_zenith.png" alt="Cosine Zenith Example" width="50%">
+  <img src="assets/input_cosine_zenith.png" alt="Cosine Zenith Example" width="50%">
 </div>
 
 ---
