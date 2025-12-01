@@ -63,7 +63,7 @@ This page provides a detailed description of each required input file, including
 `Input_City_scale_geometry_CityBEM.stl`
 
 <div align="center">
-  <img src="../assets/input_geometry_stl.png" alt="CityBEM STL Geometry Example" width="100%">
+  <img src="assets/input_geometry_stl.png" alt="CityBEM STL Geometry Example" width="100%">
 </div>
 
 ---
@@ -163,7 +163,7 @@ Below are recommended platforms to help users **generate, edit, or validate** bu
 ## 1.1 `Input_City_scale_building_info.txt`
 
 <div align="center">
-  <img src="../assets/input_building_info.png" alt="CityBEM Building Info Example" width="80%">
+  <img src="assets/input_building_info.png" alt="CityBEM Building Info Example" width="80%">
 </div>
 
 ### Purpose
@@ -221,7 +221,7 @@ The following files define different archetype dimensions:
 ### `Input_City_scale_archetype_year.txt`
 
 <div align="center">
-  <img src="../assets/input_archetype_year.png" alt="Year-based Archetypes Example" width="80%">
+  <img src="assets/input_archetype_year.png" alt="Year-based Archetypes Example" width="80%">
 </div>
 
 ### Purpose
@@ -278,7 +278,7 @@ These parameters directly influence:
 ### `Input_City_scale_archetype_usage_type.txt`
 
 <div align="center">
-  <img src="../assets/input_usage_type.png" alt="Usage Type Archetype Example" width="80%">
+  <img src="assets/input_usage_type.png" alt="Usage Type Archetype Example" width="80%">
 </div>
 
 ### Purpose
@@ -341,7 +341,7 @@ This file is central to **operational behavior** and has a strong influence on:
 ### `Input_City_scale_archetype_slabs_material.txt`
 
 <div align="center">
-  <img src="../assets/input_slabs_material.png" alt="Slab Material Archetype Example" width="80%">
+  <img src="assets/input_slabs_material.png" alt="Slab Material Archetype Example" width="80%">
 </div>
 
 ### Purpose
@@ -377,7 +377,7 @@ Each row represents a **slab type**, which may be linked to specific usage types
 ### `Input_City_scale_archetype_external_wall_material.txt`
 
 <div align="center">
-  <img src="../assets/input_external_wall_material.png" alt="External Wall Material Archetype Example" width="80%">
+  <img src="assets/input_external_wall_material.png" alt="External Wall Material Archetype Example" width="80%">
 </div>
 
 ### Purpose
@@ -411,7 +411,7 @@ Each row corresponds to a **wall material configuration**, which may be associat
 ### `Input_City_scale_archetype_IHG.txt`
 
 <div align="center">
-  <img src="../assets/input_IHG.png" alt="Internal Heat Gains Example" width="80%">
+  <img src="assets/input_IHG.png" alt="Internal Heat Gains Example" width="80%">
 </div>
 
 ### Purpose
@@ -452,7 +452,7 @@ This file is essential for capturing **daily and seasonal patterns** of internal
 ### `Input_City_scale_archetype_energy_source.txt`
 
 <div align="center">
-  <img src="../assets/input_energy_source.png" alt="Energy Source Archetype Example" width="80%">
+  <img src="assets/input_energy_source.png" alt="Energy Source Archetype Example" width="80%">
 </div>
 
 ### Purpose
@@ -488,7 +488,7 @@ This enables comparison of retrofitting scenarios not only in terms of energy, b
 ### `Input_City_scale_archetype_construction_materials_general.txt`
 
 <div align="center">
-  <img src="../assets/input_construction_materials.png" alt="Construction Materials General Archetype" width="80%">
+  <img src="assets/input_construction_materials.png" alt="Construction Materials General Archetype" width="80%">
 </div>
 
 ### Purpose
@@ -733,7 +733,7 @@ Wind data supports:
 ### **`Input_cosine_zenith.txt`**
 
 <div align="center">
-  <img src="../assets/Input_cosine_zenith.png" alt="Cosine Zenith Example" width="50%">
+  <img src="assets/Input_cosine_zenith.png" alt="Cosine Zenith Example" width="50%">
 </div>
 
 ---
@@ -789,7 +789,7 @@ The stored solar-geometry values are used throughout the solar and shading pipel
 ### `Input_general_settings.txt`
 
 <div align="center">
-  <img src="../assets/input_general_settings.png" alt="General Settings Example" width="80%">
+  <img src="assets/input_general_settings.png" alt="General Settings Example" width="80%">
 </div>
 
 ### Purpose
@@ -830,7 +830,7 @@ This file defines **global simulation flags and modes** that control how CityBEM
 ### `Input_City_scale_settings.txt`
 
 <div align="center">
-  <img src="../assets/input_city_scale_settings.png" alt="CityBEM City-scale Settings Example" width="80%">
+  <img src="assets/input_city_scale_settings.png" alt="CityBEM City-scale Settings Example" width="80%">
 </div>
 
 ### Purpose
@@ -890,7 +890,7 @@ Flags and parameters to activate or configure:
 ## 6.1 `Input_City_scale_result_selection.txt`
 
 <div align="center">
-  <img src="../assets/input_result_selection.png" alt="CityBEM Result Selection File" width="80%">
+  <img src="assets/input_result_selection.png" alt="CityBEM Result Selection File" width="80%">
 </div>
 
 ### Purpose
