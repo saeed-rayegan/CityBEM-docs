@@ -1,17 +1,17 @@
-# 🏙️ CityBEM V2 Documentation
+# 🏙️ CityBEM (City Building Energy Model)
 
 Welcome to the official documentation of CityBEM V2 — an advanced, lightweight, and scalable Urban Building Energy Modeling (UBEM) framework designed for high-resolution, city-scale simulations with outstanding computational efficiency.
 
 ### CityBEM Overview
 
 <div align="center">
-  <img src="/assets/citybem_overview.png" alt="City-scale simulation example" width="90%">
+  <img src="/assets/citybem_overview.png" alt="City-scale simulation example" width="100%">
 </div>
 
 ---
 
 <div align="center">
-  <img src="/assets/citybem_overview2.png" alt="City-scale simulation example" width="90%">
+  <img src="/assets/citybem_overview2.png" alt="City-scale simulation example" width="100%">
 </div>
 
 ---
@@ -95,12 +95,6 @@ Welcome to the official documentation of CityBEM V2 — an advanced, lightweight
 
 Use the **left sidebar** to jump between modules, examples, and detailed documentation.  
 Each page includes diagrams, workflows, and code snippets to help you replicate large-scale UBEM and PV simulations.
-
----
-
-## 📝 Citation
-
-If you use CityBEM in your research, please cite the papers listed in the **Publications** section.
 
 ---
 

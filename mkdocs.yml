@@ -24,12 +24,12 @@ extra_css:
 nav:
   - Home: index.md
   - Installation: installation.md
+  - Run CityBEM: run_citybem.md
   - Input Data: data_inputs.md
+  - Outputs: outputs.md
   - City Solar Radiation Modeling: solar_radiation.md
   - Rooftop PV Model: pv_model.md
   - Microclimate Co-Simulation: microclimate.md
-  - Outputs: outputs.md
-  - Run CityBEM: run_citybem.md
   - Test Cases:
       - Rooftop PV Montreal Case: examples/rooftoppv_montreal.md
   - Publications: publications.md

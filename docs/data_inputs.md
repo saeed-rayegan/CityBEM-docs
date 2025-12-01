@@ -1,48 +1,46 @@
-# CityBEM UBEM Workflow
+# CityBEM: From Inputs to City Energy Results
 
----
+## 1. Workflow Overview
 
-**CityBEM V2** transforms multiple data sources into unified **citywide building data arrays** through a structured and scalable workflow.  
-The process is organized into the following core components:
+The **figure below** presents the overall CityBEM V2 workflow, illustrating how diverse geospatial, archetype, and material datasets are integrated and processed into unified **citywide building data arrays**.
 
----
+<hr>
 
 <div align="center">
   <img src="/assets/citybem_workflow.png" alt="CityBEM Workflow Diagram" width="100%">
 </div>
 
----
+<hr>
 
-!!! info "1. Geospatial Matching (QGIS)"
+This workflow captures the full input-management pipeline in CityBEM — from GIS preprocessing and archetype assignment to geometry extraction and simulation-ready data generation.
+
+<hr>
+
+### 1.1 Geospatial Matching (QGIS)
+!!! info ""
     🗺️ Integrates GIS building footprints with attributes such as height, land-use, construction year, and parcel data.
 
----
-
-!!! info "2. Archetype Assignment"
+### 1.2 Archetype Assignment
+!!! info ""
     🏢 Assigns thermal, material, occupancy, and HVAC characteristics to each building through archetype mapping.
 
----
-
-!!! info "3. 3D Geometry Processing"
+### 1.3 3D Geometry Processing
+!!! info ""
     📐 Computes surface geometry (area, tilt, azimuth, façade grouping, roof type) required for thermal and solar modeling.
 
----
-
-!!! info "4. Weather Data Preparation"
+### 1.4 Weather Data Preparation
+!!! info ""
     🌦️ Converts hourly meteorological data to the simulation time step and prepares dynamic boundary conditions.
 
----
-
-!!! info "5. Citywide Building Data Arrays"
+### 1.5 Citywide Building Data Arrays
+!!! info ""
     🧩 Builds optimized internal arrays for storing building attributes and driving the transient heat/mass balance solver.
-
----
 
 Together, these components form a cohesive workflow enabling CityBEM V2 to perform **large-scale, high-resolution UBEM simulations** with both computational efficiency and physical fidelity.
 
 ---
 
-# 📥 CityBEM V2 — Input Data Specification
+## 2. :material-database-import: Input Data Specification
 
 CityBEM V2 operates using a structured collection of input files that define the full configuration of a city-scale building energy simulation.  
 These files specify the **building inventory**, **archetype definitions**, **material and thermal properties**, **meteorological conditions**, and **simulation control parameters** required by the framework.
@@ -55,6 +53,108 @@ All input files must follow a consistent formatting standard to ensure reliable 
 - A single header row followed by data records
 
 This page provides a detailed description of each required input file, including its purpose, data structure, parameter definitions, and the consistency constraints enforced throughout the CityBEM workflow.
+
+---
+
+## 3. :material-cube-outline: Building Geometry Input
+
+### 3.1 ASCII STL Geometry  
+
+`Input_City_scale_geometry_CityBEM.stl`
+
+<div align="center">
+  <img src="/assets/input_geometry_stl.png" alt="CityBEM STL Geometry Example" width="100%">
+</div>
+
+---
+
+### 3.2 Purpose
+
+The geometry file defines the **3D building representation** for the UBEM domain in **ASCII STL** format.  
+Each building must be stored as an individual `solid` block to ensure clean building separation and accurate surface reconstruction.
+
+---
+
+### 3.3 Coordinate system
+
+CityBEM uses a well-defined right-handed coordinate system:
+
+- **X-axis → East**  
+- **Y-axis → Upwards (vertical)**  
+- **Z-axis → North**
+
+This convention must be followed when:
+
+- Importing building models from external platforms  
+- Aligning CityBEM with **CFD models**, **microclimate solvers**, or **GIS datasets**  
+- Interpreting solar geometry (azimuth, altitude, incidence angles)
+
+Maintaining consistent coordinates ensures that solar, shading, and thermal calculations operate correctly.
+
+---
+
+### 3.4 STL Structure
+
+- Each building is represented as a `solid` block.  
+- Inside each block, **triangular facets** define the building surfaces.  
+- CityBEM performs a **triangle-grouping process** to reconstruct planar surfaces (walls, roofs, floor slabs).  
+- Degenerate or non-planar triangles are automatically handled during preprocessing.
+
+This structure enables robust geometry interpretation for large building stocks.
+
+---
+
+### 3.5 Preprocessing Workflow
+
+CityBEM includes a geometry-preprocessing tool that can:
+
+- Convert STL/OBJ models into the **CityBEM coordinate system**  
+- Assign consistent `building_id` tags  
+- Filter and remove non-building objects (terrain, vegetation, urban furniture)  
+- Validate and repair geometry to ensure watertight surfaces  
+- Prepare surface metadata required for solar and thermal simulation
+
+This geometry file is foundational for:
+
+- Computing envelope areas, surface normals, and orientations  
+- Running roof/ façade solar radiation calculations  
+- Performing **inter-building shading analysis**  
+- Coupling with CFD/microclimate tools (CityFFD, OpenFOAM, etc.)
+
+---
+
+### :material-toolbox-outline: 3.6 Useful Tools
+
+Below are recommended platforms to help users **generate, edit, or validate** building geometry before importing into CityBEM.  
+
+---
+
+#### :material-map-outline: Interactive GIS & OSM Tools
+
+!!! info "GeoJSON.io — Quick Editing & Export"
+    An intuitive web tool for drawing or editing footprints and exporting them as **GeoJSON**, which can then be extruded into 3D.  
+    <a href="https://geojson.io/#map=5/44.19/-74.91" target="_blank">Open GeoJSON.io</a>
+
+!!! info "OpenStreetMap — Building Footprints & Metadata"
+    Useful for downloading building footprints, heights, and land-use attributes. Ideal for city-scale UBEM initialization.  
+    <a href="https://www.openstreetmap.org/#map=13/45.47040/-73.64460" target="_blank">Open OpenStreetMap</a>
+
+!!! info "OSM2World — Convert OSM to 3D Geometry"
+    Generates **3D models** from OSM footprints (walls, roofs, extrusions), exportable to OBJ/STL for CityBEM preprocessing.  
+    <a href="https://www.osm2world.org/" target="_blank">Open OSM2World</a>
+
+---
+
+#### :material-cube-scan: 3D Processing & Validation Tools
+
+!!! info "ParaView — Geometry Inspection & Surface Analysis"
+    Excellent for visualizing STL files, checking mesh quality, inspecting normals, and validating triangle structure before CityBEM import.  
+    <a href="https://www.paraview.org/" target="_blank">Open ParaView</a>
+
+!!! info "MeshLab — Mesh Repair & Optimization"
+    Ideal for cleaning, repairing, reducing, or reorienting STL/OBJ meshes. Useful when importing geometry exported from BIM/GIS tools.  
+    <a href="https://www.meshlab.net/" target="_blank">Open MeshLab</a>
+
 
 ---
 
@@ -412,54 +512,9 @@ Each row represents a **material type** commonly used in regional construction (
 
 ---
 
-# 3. Building Geometry Input
+## 4. :material-weather-cloudy: Weather Data
 
-## 3.1 ASCII STL Geometry  
-### `Input_City_scale_geometry_CityBEM.stl`
-
-<div align="center">
-  <img src="../assets/input_geometry_stl.png" alt="CityBEM STL Geometry Example" width="80%">
-</div>
-
-### Purpose
-
-This file provides the **3D geometry** of the building stock in **ASCII STL** format.  
-Each building is represented as a separate `solid` block.
-
-### Coordinate System
-
-CityBEM uses a specific coordinate convention:
-
-- **X-axis:** East  
-- **Y-axis:** Vertical (upwards)  
-- **Z-axis:** North  
-
-This is important when:
-- Importing geometry from other tools
-- Aligning with external CFD or microclimate models
-- Interpreting solar positions (azimuth, altitude)
-
-### Structure
-
-- Each building `solid` typically contains multiple triangular facets.
-- Each facet is used to reconstruct planar surfaces (walls, roofs, slabs).
-- A preprocessing step groups triangles that belong to the same physical surface.
-
-### Preprocessing
-
-A dedicated preprocessing tool is available to:
-- Convert arbitrary STL/OBJ geometry into CityBEM’s **coordinate system**
-- Assign `building_id` tags to each solid
-- Optionally filter out non-building objects (terrain, furniture, etc.)
-
-This geometry file is the basis for:
-- Determining building envelope areas and orientation
-- Computing solar radiation (direct, diffuse, reflected)
-- Inter-building shading analysis
-
----
-
-# 🌦️ 4. Weather Data
+### **`Input_weatherdata.txt`**
 
 <div align="center">
   <img src="/assets/input_weatherdata.png" alt="Weather Data Example" width="120%">
@@ -467,7 +522,7 @@ This geometry file is the basis for:
 
 ---
 
-## 📘 Overview
+### 📘 4.1 Overview
 
 `Input_weatherdata.txt` provides the meteorological time series that CityBEM uses as boundary conditions for all buildings in the simulation domain.
 
@@ -475,7 +530,7 @@ This file typically contains **one full year** of data at a fixed time interval 
 
 ---
 
-## 📄 File Structure
+### 📄 4.2 File Structure
 
 <div class="grid cards" markdown>
 
@@ -492,7 +547,7 @@ This file typically contains **one full year** of data at a fixed time interval 
 
 ---
 
-## 📑 Weather Data Description
+### 📑 4.3 Weather Data Description
 
 <div align="center" style="width: 95%; margin: 0 auto;">
 
@@ -579,7 +634,7 @@ This file typically contains **one full year** of data at a fixed time interval 
 
 ---
 
-## 🌐 Supported Weather Data Sources
+### :material-weather-partly-cloudy: 4.4 Supported Weather Data Sources
 
 CityBEM can operate with multiple types of meteorological datasets:
 
@@ -596,19 +651,46 @@ CityBEM can operate with multiple types of meteorological datasets:
 
 </div>
 
-!!! tip "Download TMY Weather Data (Global)"
-    You can access **TMY weather files for thousands of global locations** using the  
-    **National Solar Radiation Database (NSRDB)**.
+!!! tip "Download & Prepare Weather Files (TMY, EPW, AMY)"
 
-    🌐 **Access Database:**  
+    You can access, download, and prepare high-quality **weather datasets**  
+    (TMY, EPW, AMY) using the following recommended tools:
+
+    ---
+
+    ### :material-weather-sunny: **1. National Solar Radiation Database (NSRDB)** — *Global TMY Data*
+    The most authoritative source for **TMY solar and meteorological datasets** worldwide.  
+    Includes GHI, DNI, DHI, wind, temperature, humidity, and more.
+
+    🌐 **Access NSRDB:**  
     <a href="https://nsrdb.nrel.gov/" target="_blank">National Solar Radiation Database</a>
 
-    The NSRDB provides high-quality solar and meteorological datasets suitable for  
-    CityBEM simulations, including **GHI, DNI, DHI, temperature, wind, and humidity**.
+    ---
+
+    ### :material-map-search: **2. EPWMap (Ladybug Tools)** — *Interactive EPW World Map*
+    A modern, map-based interface for searching, previewing, and downloading EPW files  
+    from multiple repositories (EnergyPlus, OneBuilding, NSRDB links, etc.).  
+    Very intuitive for selecting weather files by location.
+
+    🌍 **Open EPWMap:**  
+    <a href="https://www.ladybug.tools/epwmap/#close" target="_blank">EPWMap — Ladybug Tools</a>
+
+    ---
+
+    ### :material-file-chart: **3. Elements (Big Ladder Software)** — *EPW & TMY Viewer/Editor*
+    A powerful desktop tool for **visualizing, extracting, converting, and editing**  
+    weather data from **EPW**, **TMY**, and similar formats.  
+    Ideal for preparing CityBEM-compatible weather inputs and  
+    checking for missing or corrupted data.
+
+    🖥️ **Download Elements:**  
+    <a href="https://bigladdersoftware.com/projects/elements/" target="_blank">Open Elements Tool</a>
+
+    ---
 
 ---
 
-## ⚙️ How CityBEM Uses Weather Data
+### ⚙️ 4.5 How CityBEM Uses Weather Data
 
 Weather inputs drive the physical models for every timestep in the simulation.
 
@@ -634,7 +716,7 @@ Wind data supports:
 
 ---
 
-## 📝 Weather Data Summary
+### 📝 4.6 Weather Data Summary
 
 !!! note "🔧 Key Notes"
     - Must provide a **continuous time series** with a fixed time step  
@@ -642,6 +724,62 @@ Wind data supports:
       For example, **global horizontal irradiance (GHI)** is enough for solar modeling if other radiation terms are unavailable, and **air temperature + relative humidity (or dew point)** are sufficient since other psychrometric quantities can be derived.
     - The simulation time period must match the **valid period of the input weather data**  
     - The dataset must represent a **climate zone consistent with the study area**
+
+---
+
+# 5. Solar Position Input
+
+## 5.1 Hourly Sun Position Data  
+### **`Input_cosine_zenith.txt`**
+
+<div align="center">
+  <img src="../assets/Input_cosine_zenith.png" alt="Cosine Zenith Example" width="50%">
+</div>
+
+---
+
+### 🔍 5.1 Purpose
+
+`Input_cosine_zenith.txt` stores **precomputed solar geometry parameters** that are required throughout the CityBEM simulation.  
+By preparing these values in advance, CityBEM avoids repeated solar-position calculations, improving computational efficiency during shading and irradiance evaluation.
+
+!!! info "Solar Position Resource"
+    You can generate accurate sun-position values using the  
+    <a href="https://gml.noaa.gov/grad/solcalc/" target="_blank">NOAA Solar Position Calculator</a>.
+
+**Notes:**
+- **Hourly resolution is sufficient** for sun-position data because solar angles vary smoothly over time.  
+- If the simulation timestep is **sub-hourly**, CityBEM will **extrapolate/interpolate solar-position values automatically**, ensuring accurate sun-direction inputs at all temporal resolutions.
+
+---
+
+### 📄 5.2 Typical Content
+
+For each simulation timestep (typically hourly), `Input_cosine_zenith.txt` contains:
+
+- **Cosine of the solar zenith angle**  
+- **Solar azimuth angle** (north-based convention)
+
+These parameters are generated during the preprocessing stage to ensure consistent solar geometry across the simulation.
+
+---
+
+### ⚙️ 5.3 Functional Role in CityBEM
+
+The stored solar-geometry values are used throughout the solar and shading pipeline:
+
+<div class="grid cards" markdown>
+
+- :material-timer: **Sub-Hourly Timestep Adaptation**  
+  CityBEM automatically interpolates or extrapolates sun-position values when users select finer timesteps (e.g., 10-min or 15-min simulations).
+
+- :material-white-balance-sunny: **Ray-Tracing Shading Support**  
+  Supplies the sun-direction vectors, surface incidence angles, and other required inputs for the 3D shading engine.
+
+- :material-ray-start: **Consistent Solar Geometry**  
+  Ensures all buildings and surfaces across the city domain use a unified solar reference.
+
+</div>
 
 ---
 
@@ -784,36 +922,6 @@ Each row typically represents one **output variable**.
   - Computed at the detailed reporting level
   - Written to disk as time series or aggregated results
 - This enables efficient handling of large-scale simulations (tens of thousands of buildings) without unnecessary I/O.
-
----
-
-# 7. Solar Preprocessing
-
-## 7.1 Cosine of Zenith Angle  
-### `Input_cosine_zenith.txt`
-
-<div align="center">
-  <img src="../assets/input_cosine_zenith.png" alt="Cosine Zenith Example" width="80%">
-</div>
-
-### Purpose
-
-This file stores **precomputed solar geometry quantities** that are reused across the simulation, especially for shading calculations and solar radiation decomposition.
-
-### Typical Content
-
-For each timestep:
-- Cosine of the solar zenith angle
-- Solar azimuth (north-based convention)
-- Optionally additional derived angles if required by the solar model
-
-### How CityBEM Uses This File
-
-- Accelerates solar calculations by avoiding repeated solar-position computations.
-- Used by the 3D ray-tracing shading module to:
-  - Determine sun direction vectors
-  - Compute incidence angles on surfaces
-- Can be generated automatically as part of the pre-processing workflow.
 
 ---
 
